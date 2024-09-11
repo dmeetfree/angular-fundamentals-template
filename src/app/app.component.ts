@@ -8,8 +8,7 @@ import {
   Subject,
   Subscription,
   debounceTime,
-  switchMap,
-  take,
+  switchMap
 } from 'rxjs';
 import { MockDataService } from './mock-data.service';
 
@@ -52,7 +51,7 @@ export class AppComponent implements OnInit, OnDestroy {
         // YOUR CODE STARTS HERE
           filter((value: string) => value.length > 2),
           debounceTime(1000),
-          map((value: string) => this.mockDataService.getCharacters(value))
+          switchMap((value: string) => this.mockDataService.getCharacters(value))
         // YOUR CODE ENDS HERE
         );
   }
