@@ -66,7 +66,9 @@ export class AppComponent implements OnInit, OnDestroy {
     this.planetAndCharactersResults$ = forkJoin([
       this.charactersResults$.pipe(take(1)),
       this.mockDataService.getPlanets()
-    ]).map(([characters, planets]: any) => [...characters, ...planets]);
+    ]).pipe(
+      map(([characters, planets]: any) => [...characters, ...planets])
+    );
     // YOUR CODE ENDS HERE
   }
 
@@ -84,8 +86,9 @@ export class AppComponent implements OnInit, OnDestroy {
     const loadingSubscription = combineLatest([
       this.mockDataService.getCharactersLoader(),
       this.mockDataService.getPlanetLoader()
-    ]).map(this.areAllValuesTrue)
-    .subscribe((isLoading: boolean) => this.isLoading = isLoading);
+    ]).pipe(
+      map(this.areAllValuesTrue)
+    ).subscribe((isLoading: boolean) => this.isLoading = isLoading);
 
     this.subscriptions.push(loadingSubscription);
     // YOUR CODE ENDS HERE
