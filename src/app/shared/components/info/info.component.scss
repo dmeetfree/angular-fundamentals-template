@@ -2,8 +2,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 10px 50px;
+  background-color: rgb(208, 208, 208);
+  border: 1px solid gray;
 
-  &__header {
+  .app-info__header {
     font-weight: 700;
     font-size: 32px;
     line-height: 40px;
@@ -11,7 +14,7 @@
     margin-bottom: 24px;
   }
 
-  &__title {
+  .app-info__title {
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
