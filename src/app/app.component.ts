@@ -1,5 +1,13 @@
 import { Component } from '@angular/core';
-import { ButtonComponent, HeaderComponent, InfoComponent } from './shared/components';
+import { 
+  ButtonComponent,
+  CourseFormComponent, 
+  HeaderComponent, 
+  InfoComponent, 
+  LoginFormComponent, 
+  RegistrationFormComponent, 
+  SearchComponent
+} from './shared/components';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NotAuthorizedGuard } from './auth/guards/not-authorized.guard';
 import { CoursesService } from './services/courses.service';
@@ -18,7 +26,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule, 
     FormsModule, 
     ReactiveFormsModule, 
-    FontAwesomeModule
+    FontAwesomeModule,
+    LoginFormComponent,
+    RegistrationFormComponent,
+    CourseFormComponent,
+    SearchComponent
   ],
   providers: [
     AuthorizedGuard, 
