@@ -4,9 +4,12 @@ import {
 } from '@angular/forms';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'app-course-form',
+  standalone: true,
+  imports: [ButtonComponent],
   templateUrl: './course-form.component.html',
   styleUrls: ['./course-form.component.scss'],
 })

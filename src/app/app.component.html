@@ -1,10 +1,20 @@
-<app-header></app-header>
+<app-header>
+  <div class="header-login">
+    <span>User name</span>
+    <app-button text="LOGIN"></app-button>
+  </div>
+</app-header>
 <div class="app-root">
   <!-- Search component -->
   <!--<app-search></app-search>-->
 
   <!-- Info component -->
-  <!--<app-info></app-info>-->
+  <app-info 
+   title="Title"
+   text="Please use 'Add new course' button to add your first course"
+   >
+    <app-button text="Add new course"></app-button>
+  </app-info>
 
   <!-- Course Card component -->
   <!--<app-course-card></app-course-card>-->
