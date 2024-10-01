@@ -1,0 +1,5 @@
+@if (isLogin) {
+  <app-login-form (onRegistration)="registrationHandler()"></app-login-form>
+} @else {
+  <app-registration-form (onSignIn)="signInHandler()"></app-registration-form>
+}

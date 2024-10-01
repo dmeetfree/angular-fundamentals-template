@@ -1,56 +1,116 @@
 <!-- Replace ::text:: with your code -->
 <h2>Create / Edit Course</h2>
-<form>
+<form [formGroup]="courseForm" (ngSubmit)="onSubmitClick()">
   <div class="app-plate">
     <div class="course">
       <h3>Main Info</h3>
       <div class="form__control">
         <label for="title">Title</label>
         <!--Use the name `title` for the form control.-->
-        <input type="text" id="title" placeholder="Input text"/>
-        <span id="titleErrorMessage" class="text-danger">Title is required.</span>
+        <input
+          formControlName="title"
+          type="text"
+          id="title"
+          placeholder="Input text"
+        />
+        @if (title.touched) {
+          <span [hidden]="!title.hasError('retuired')" class="text-danger"
+            >Title is required.</span
+          >
+        }
       </div>
       <div class="form__control">
         <label for="description">Description</label>
         <!--Use the name `description` for the form control.-->
         <textarea
+          formControlName="description"
           id="description"
           name="description"
           placeholder="Input text"
           rows="4"
           cols="5"
         ></textarea>
-        <span id="descriptionErrorMessage" class="text-danger">Description is required.</span>
+        @if (description.touched) {
+          <span [hidden]="!description.hasError('retuired')" class="text-danger"
+            >Description is required.</span
+          >
+        }
       </div>
       <div class="separator"></div>
-      <h3>Authors</h3>
-      <div class="form__control">
-        <div class="course__flex">
-          <!--Use the name `author` for the form control.-->
-          <input type="text" id="author" placeholder="Input Author Name"/>
-          <app-button id="createAuthor"></app-button>
-        </div>
-        <span id="authorErrorMessage">New author should contain only latin letters and numbers.</span>
-        <div class="course__authors">
-          <!--Use the name `authors` for the form array.-->
-          ::Authors::
+      <div class="w-50">
+        <h3>Duration</h3>
+        <div class="form__control">
+          <div class="course__flex">
+            <!--Use the name `duration` for the form array.-->
+            <input
+              formControlName="duration"
+              type="number"
+              id="duration"
+              placeholder="Duration"
+            />
+            <div class="course__duration">::Duration::</div>
+          </div>
+          @if (duration.touched) {
+            <span [hidden]="!duration.hasError('retuired')" class="text-danger"
+              >Duration is required.</span
+            >
+          }
         </div>
       </div>
       <div class="separator"></div>
-      <h3>Duration</h3>
-      <div class="form__control">
-        <div class="course__flex">
-          <!--Use the name `duration` for the form array.-->
-          <input type="number" id="duration" placeholder="Input duration"/>
-          <div class="course__duration">
-            ::Duration::
+      <div class="authors-section">
+        <div class="w-65">
+          <h3>Authors</h3>
+          <div class="form__control">
+            <div class="course__flex">
+              <input
+                formControlName="author"
+                type="text"
+                id="author"
+                placeholder="Author Name"
+              />
+              <app-button
+                text="Create Author"
+                (click)="onCreateAuthorClick()"
+              ></app-button>
+            </div>
+            <!-- <span class="text-danger"
+              >New author should contain only latin letters and numbers.</span
+            > -->
+          </div>
+          <h3>Authors List</h3>
+          <div class="authors">
+            @for (author of authors.controls; track author.value) {
+              <div class="author">
+                <input type="text" readonly [value]="author.value" />
+                <button (click)="onAddAuthorClick(author.value)"><fa-icon [icon]="'circle-plus'"></fa-icon></button>
+              </div>
+            } @empty {
+              <span>Authors list is empty</span>
+            }
           </div>
         </div>
-        <span id="durationErrorMessage" class="text-danger">Duration is required.</span>
-      </div>
-      <div class="form__action">
-        <app-button></app-button>
+        <div class="authors-list w-30">
+          <h3>Course Authors</h3>
+          <div class="course__authors">
+            @for (
+              courseAuthor of courseAuthors.controls;
+              track courseAuthor.value
+            ) {
+              <div class="course__author">
+                <input type="text" readonly [value]="courseAuthor.value" />
+                <button (click)="onRemoveAuthorClick(courseAuthor.value)"><fa-icon [icon]="'circle-minus'"></fa-icon></button>
+              </div>
+            } @empty {
+              <span>Authors list is empty</span>
+            }
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </form>
+<div class="form__button">
+  <app-button text="Cancel"></app-button>
+  <app-button text="Create course" (click)="onSubmitClick()"></app-button>
+</div>
