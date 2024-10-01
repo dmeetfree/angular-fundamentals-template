@@ -1,27 +1,74 @@
 <h2 class="text-align-center">Login</h2>
 <div class="app-plate">
-  <form #loginForm="ngForm">
+  <form
+    #loginForm="ngForm"
+    (ngSubmit)="onSubmitClick()"
+    [ngClass]="{ submitted: isSubmitted }"
+  >
     <div class="login-form">
       <div>
         <div class="form__control">
           <label for="email">Email</label>
-          <!--Use the name `email` for the form control.-->
-          <input type="text" id="email" placeholder="Input text"/>
-          <span id="emailErrorMessage" class="text-danger">Email is required.</span>
+          <!-- name="email" for ngForm binding -->
+          <!-- [(ngModel)]="email" for two-way data binding, for initialization-->
+          <!-- #email="ngModel" link template reference with ngModel -->
+          <input
+            id="email"
+            name="email"
+            #email="ngModel"
+            type="text"
+            placeholder="Input text"
+            required
+            emailValidator
+            [(ngModel)]="login.email"
+          />
+          <div
+            [hidden]="
+              (email.valid && (email.dirty || email.touched)) || email.pristine && !isSubmitted
+            "
+          >
+            <span
+              [hidden]="!email.hasError('required')"
+              class="text-danger"
+              >Email is required.</span
+            >
+            <br />
+            <span [hidden]="!email.hasError('email')" class="text-danger"
+              >Email is not valid</span
+            >
+          </div>
         </div>
         <div class="form__control">
           <label for="password">Password</label>
-          <!--Use the name `password` for the form control.-->
-          <input type="password" id="password" placeholder="Input text"/>
-          <span id="passwordErrorMessage" class="text-danger">Password is required.</span>
+          <input
+            type="password"
+            name="password"
+            #password="ngModel"
+            id="password"
+            placeholder="Input text"
+            required
+            [(ngModel)]="login.password"
+          />
+          <span
+            [hidden]="
+              (password.valid && (password.dirty || password.touched)) ||
+              password.pristine && !isSubmitted
+            "
+            id="passwordErrorMessage"
+            class="text-danger"
+            >Password is required.</span
+          >
         </div>
       </div>
       <div>
         <div class="form__action">
-          <app-button></app-button>
+          <app-button text="Login" (click)="onSubmitClick()"></app-button>
         </div>
         <div class="form__text">
-          If you don't have an account you may <strong>Registration</strong>
+          If you don't have an account you may
+          <strong class="registration" (click)="onRegistrationClick()"
+            >Registration</strong
+          >
         </div>
       </div>
     </div>
