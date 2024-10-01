@@ -1,13 +1,15 @@
 <div class="app-button">
-  <ng-container *ngIf="text; then textTemplate; else iconTemplate"></ng-container>
+  <ng-container
+    *ngIf="text; then textTemplate; else iconTemplate"
+  ></ng-container>
 
   <ng-template #textTemplate>
-    <span>{{text}}</span>
-  </ng-template>
-  
-  <ng-template #iconTemplate>
-   <span>{{iconName}}</span>
+    <span>{{ text }}</span>
   </ng-template>
 
- <ng-content></ng-content>
+  <ng-template #iconTemplate>
+    <span>{{ iconName }}</span>
+  </ng-template>
+
+  <ng-content></ng-content>
 </div>

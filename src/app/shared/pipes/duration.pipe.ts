@@ -1,8 +1,8 @@
 import { Pipe } from "@angular/core";
 
 @Pipe({
-    name: 'duration'
+  name: "duration",
 })
 export class DurationPipe {
-    // Add your code here
+  // Add your code here
 }

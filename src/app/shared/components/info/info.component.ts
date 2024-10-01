@@ -1,17 +1,17 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input } from "@angular/core";
 
 @Component({
-  selector: 'app-info',
+  selector: "app-info",
   standalone: true,
   imports: [],
-  templateUrl: './info.component.html',
-  styleUrls: ['./info.component.scss']
+  templateUrl: "./info.component.html",
+  styleUrls: ["./info.component.scss"],
 })
 export class InfoComponent {
   @Input()
-  title = '';
+  title = "";
 
   @Input()
-  text = '';
+  text = "";
 }
 // Use the names `title` and `text`.
