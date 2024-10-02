@@ -15,6 +15,7 @@ import { AuthorizedGuard } from "./auth/guards/authorized.guard";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AuthComponent } from "./features/auth/auth.component";
+import { RouterOutlet, RouterLinkActive, RouterLink } from "@angular/router";
 
 @Component({
   selector: "app-root",
@@ -32,6 +33,9 @@ import { AuthComponent } from "./features/auth/auth.component";
     CourseFormComponent,
     SearchComponent,
     AuthComponent,
+    RouterOutlet,
+    RouterLinkActive,
+    RouterLink
   ],
   providers: [
     AuthorizedGuard,
@@ -44,10 +48,8 @@ import { AuthComponent } from "./features/auth/auth.component";
 })
 export class AppComponent {
   title = "courses-app";
-  isLoginPage = false;
-  isCreateCourse = true;
 
   onOpenLogin() {
-    this.isLoginPage = !this.isLoginPage;
+    
   }
 }
