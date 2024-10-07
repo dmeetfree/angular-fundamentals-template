@@ -1,19 +1,21 @@
 <app-header>
+  <nav class="navigation">
+    <ul class="navigation__list">
+      <li><a routerLink="/login" routerActiveLink="active">Login</a></li>
+      <li><a routerLink="/registration">Registration</a></li>
+      <li><a routerLink="/courses/add">Add Course</a></li>
+      <li><a routerLink="/courses">Courses</a></li>
+    </ul>
+  </nav>
   <div class="header-login">
     <span>User name</span>
     <app-button (click)="onOpenLogin()" text="LOGIN"></app-button>
   </div>
 </app-header>
 <div class="app-root">
-  
-  @if(isLoginPage){
-    <!-- Authentication Form component -->
-    <app-auth></app-auth>
-  } @else if (isCreateCourse) {
-    <!-- Course Form component -->
-    <app-course-form></app-course-form>
-  }
-
+  <main>
+    <router-outlet />
+  </main>
   <!-- Modal component -->
   <!-- <app-modal [message]="'Message'" [title]="'Title'" [okButtonText]="'Ok'" [cancelButtonText]="'Cancel'"></app-modal> -->
 </div>

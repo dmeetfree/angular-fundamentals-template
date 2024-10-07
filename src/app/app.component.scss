@@ -17,3 +17,19 @@
     margin: 0 10px;
   }
 }
+
+.navigation {
+  & .navigation__list {
+    display: flex;
+
+    & li {
+      display: flex;
+      padding: 5px 10px;
+      margin: 0 5px;
+    }
+    
+    & a {
+      color: black;
+    }
+  }
+}
